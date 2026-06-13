@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry, Suhana 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#FFF8D6,#FFF3C4,#FFFBE6);
+    position:relative;
+}
+
+/* Floating Purple Hearts */
+.heart{
+    position:fixed;
+    bottom:-50px;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+    opacity:0.8;
+    z-index:1;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0);
+        opacity:0.8;
+    }
+
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* Apology Card */
+.card{
+    width:90%;
+    max-width:450px;
+    background:white;
+    border-radius:35px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    z-index:10;
+}
+
+.card-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+h1{
+    font-family:'Pacifico',cursive;
+    color:#7E57C2;
+    font-size:2.8rem;
+    margin-bottom:20px;
+}
+
+.message{
+    color:#666;
+    line-height:1.8;
+    font-size:16px;
+    margin-bottom:30px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:none;
+    border-radius:50px;
+    padding:15px 25px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+#yesBtn{
+    background:#7E57C2;
+    color:white;
+    box-shadow:0 8px 20px rgba(126,87,194,0.3);
+}
+
+#yesBtn:hover{
+    transform:scale(1.05);
+}
+
+#noBtn{
+    background:#F3E5F5;
+    color:#6A1B9A;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition:0.15s;
+}
+
+/* Greeting Screen */
+#popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#FFF8D6,#FFF3C4,#FFFBE6);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:999;
+}
+
+.popup-card{
+    background:white;
+    width:90%;
+    max-width:450px;
+    border-radius:35px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+}
+
+.popup-card h2{
+    font-family:'Pacifico',cursive;
+    color:#7E57C2;
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+.popup-card p{
+    color:#666;
+    line-height:1.8;
+    font-size:17px;
+    margin:10px 0;
+}
+
+@media(max-width:480px){
+
+    h1{
+        font-size:2.2rem;
+    }
+
+    .popup-card h2{
+        font-size:2rem;
+    }
+
+    .message,
+    .popup-card p{
+        font-size:15px;
+    }
+
+    button{
+        font-size:15px;
+        padding:13px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="card-icon">💜🌷</div>
+
+    <h1>Will You Accept My Apology?</h1>
+
+    <div class="message">
+        Dear <strong>Suhana</strong>,<br><br>
+
+        I know I may have hurt you, and I'm truly sorry. 🥺
+
+        You mean so much to me, and I never want a misunderstanding to come between us.
+
+        Will you forgive me? 💜
+    </div>
+
+    <div class="buttons">
+
+        <button id="yesBtn">
+            Yes, I Forgive You 💜
+        </button>
+
+        <button id="noBtn">
+            Nooo 🙈
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Greeting Card -->
+
+<div id="popup">
+
+    <div class="popup-card">
+
+        <h2>Thank You, Suhana 💜</h2>
+
+        <p>
+            You are my sister,
+        </p>
+
+        <p>
+            like a Princess 👑
+        </p>
+
+        <p>
+            and as precious as a Diamond 💎.
+        </p>
+
+        <p>
+            No misunderstanding can ever change
+            the love and respect I have for you.
+        </p>
+
+        <p>
+            Love you always. 💜✨
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const popup = document.getElementById("popup");
+
+let escaped = false;
+
+/* No button runs away */
+function moveButton(){
+
+    if(!escaped){
+
+        const rect = noBtn.getBoundingClientRect();
+
+        noBtn.style.position = "fixed";
+        noBtn.style.left = rect.left + "px";
+        noBtn.style.top = rect.top + "px";
+
+        escaped = true;
+    }
+
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+}
+
+/* Desktop */
+noBtn.addEventListener("mouseenter", moveButton);
+
+/* Mobile */
+noBtn.addEventListener("touchstart", function(e){
+    e.preventDefault();
+    moveButton();
+});
+
+/* Yes clicked */
+yesBtn.addEventListener("click", () => {
+
+    popup.style.display = "flex";
+
+    for(let i=0; i<100; i++){
+        createHeart();
+    }
+});
+
+/* Floating Purple Hearts */
+function createHeart(){
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.innerHTML = "💜";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 8000);
+}
+
+/* Background hearts */
+setInterval(createHeart, 800);
+
+</script>
+
+</body>
+</html>
